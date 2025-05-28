@@ -1,0 +1,173 @@
+﻿{
+   "CodeGenerationMode": 5,
+   "ContextClassName": "dbLogisticaContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Logistic.BackEnd.Data",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[Direccion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Empresa]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmpresaGrupos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmpresaLocal]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Imagenes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Paises]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoAlmacen]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoArticulo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoCalificacion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoCambio]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoCompra]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoCuentaBancaria]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoCuentaMayor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoDireccion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoDocumento]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoDocumentoIdentidad]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoFormaPago]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoMarcaArticulo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoMotivoBaja]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoMovimiento]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoProceso]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoSocio]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoSolicitud]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoValorizacion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoVia]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoZona]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UbigeoDepartamento]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UbigeoDistrito]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UbigeoProvincia]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UsuarioLocales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Usuarios]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}
