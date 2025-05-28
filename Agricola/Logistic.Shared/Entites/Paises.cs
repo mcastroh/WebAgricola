@@ -5,17 +5,12 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class UbigeoProvincium
+public partial class Paises
 {
     /// <summary>
     /// ID
     /// </summary>
     public int Id { get; set; }
-
-    /// <summary>
-    /// Departamento ID
-    /// </summary>
-    public int IdDepartamento { get; set; }
 
     /// <summary>
     /// Código
@@ -52,7 +47,5 @@ public partial class UbigeoProvincium
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual UbigeoDepartamento IdDepartamentoNavigation { get; set; }
-
-    public virtual ICollection<UbigeoDistrito> UbigeoDistritos { get; set; } = new List<UbigeoDistrito>();
+    public virtual ICollection<Direccion> Direccion { get; set; } = new List<Direccion>();
 }

@@ -5,12 +5,17 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class TipoVium
+public partial class UbigeoProvincia
 {
     /// <summary>
     /// ID
     /// </summary>
     public int Id { get; set; }
+
+    /// <summary>
+    /// Departamento ID
+    /// </summary>
+    public int IdDepartamento { get; set; }
 
     /// <summary>
     /// Código
@@ -47,5 +52,7 @@ public partial class TipoVium
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<Direccion> Direccions { get; set; } = new List<Direccion>();
+    public virtual UbigeoDepartamento IdDepartamentoNavigation { get; set; }
+
+    public virtual ICollection<UbigeoDistrito> UbigeoDistrito { get; set; } = new List<UbigeoDistrito>();
 }

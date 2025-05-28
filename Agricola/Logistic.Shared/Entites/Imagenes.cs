@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class Imagene
+public partial class Imagenes
 {
     /// <summary>
     /// ID
@@ -52,9 +52,9 @@ public partial class Imagene
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<EmpresaGrupo> EmpresaGrupos { get; set; } = new List<EmpresaGrupo>();
+    public virtual ICollection<Empresa> Empresa { get; set; } = new List<Empresa>();
 
-    public virtual ICollection<Empresa> Empresas { get; set; } = new List<Empresa>();
+    public virtual ICollection<EmpresaGrupos> EmpresaGrupos { get; set; } = new List<EmpresaGrupos>();
 
-    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+    public virtual ICollection<Usuarios> Usuarios { get; set; } = new List<Usuarios>();
 }

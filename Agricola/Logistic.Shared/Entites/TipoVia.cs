@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class Role
+public partial class TipoVia
 {
     /// <summary>
     /// ID
@@ -47,5 +47,5 @@ public partial class Role
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+    public virtual ICollection<Direccion> Direccion { get; set; } = new List<Direccion>();
 }

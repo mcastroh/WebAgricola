@@ -47,5 +47,5 @@ public partial class UbigeoDepartamento
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<UbigeoProvincium> UbigeoProvincia { get; set; } = new List<UbigeoProvincium>();
+    public virtual ICollection<UbigeoProvincia> UbigeoProvincia { get; set; } = new List<UbigeoProvincia>();
 }

@@ -52,7 +52,7 @@ public partial class UbigeoDistrito
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<Direccion> Direccions { get; set; } = new List<Direccion>();
+    public virtual ICollection<Direccion> Direccion { get; set; } = new List<Direccion>();
 
-    public virtual UbigeoProvincium IdProvinciaNavigation { get; set; }
+    public virtual UbigeoProvincia IdProvinciaNavigation { get; set; }
 }

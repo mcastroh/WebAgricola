@@ -5,22 +5,47 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class UsuarioLocale
+public partial class Usuarios
 {
     /// <summary>
-    /// Id
+    /// ID
     /// </summary>
     public int Id { get; set; }
 
     /// <summary>
-    /// Usuario ID
+    /// Código
     /// </summary>
-    public int IdUsuario { get; set; }
+    public string Codigo { get; set; }
 
     /// <summary>
-    /// Local ID
+    /// Descripción
     /// </summary>
-    public int IdLocal { get; set; }
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Email
+    /// </summary>
+    public string Correo { get; set; }
+
+    /// <summary>
+    /// Celular
+    /// </summary>
+    public string Celular { get; set; }
+
+    /// <summary>
+    /// Clave
+    /// </summary>
+    public string Clave { get; set; }
+
+    /// <summary>
+    /// Foto ID
+    /// </summary>
+    public int? IdFoto { get; set; }
+
+    /// <summary>
+    /// Rol ID
+    /// </summary>
+    public int IdRol { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -47,7 +72,9 @@ public partial class UsuarioLocale
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual EmpresaLocal IdLocalNavigation { get; set; }
+    public virtual Imagenes IdFotoNavigation { get; set; }
 
-    public virtual Usuario IdUsuarioNavigation { get; set; }
+    public virtual Roles IdRolNavigation { get; set; }
+
+    public virtual ICollection<UsuarioLocales> UsuarioLocales { get; set; } = new List<UsuarioLocales>();
 }

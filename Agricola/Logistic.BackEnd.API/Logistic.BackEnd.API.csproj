@@ -12,11 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Logistic.BackEnd.Data\Logistic.BackEnd.Data.csproj" />
+    <ProjectReference Include="..\Logistic.Shared\Logistic.Shared.csproj" />
   </ItemGroup>
 
 </Project>

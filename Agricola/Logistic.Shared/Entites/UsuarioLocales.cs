@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class TipoCuentaBancarium
+public partial class UsuarioLocales
 {
     /// <summary>
-    /// ID
+    /// Id
     /// </summary>
     public int Id { get; set; }
 
     /// <summary>
-    /// Código
+    /// Usuario ID
     /// </summary>
-    public string Codigo { get; set; }
+    public int IdUsuario { get; set; }
 
     /// <summary>
-    /// Descripción
+    /// Local ID
     /// </summary>
-    public string Name { get; set; }
+    public int IdLocal { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -46,4 +46,8 @@ public partial class TipoCuentaBancarium
     /// Auditoría Update Fecha
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
+
+    public virtual EmpresaLocal IdLocalNavigation { get; set; }
+
+    public virtual Usuarios IdUsuarioNavigation { get; set; }
 }

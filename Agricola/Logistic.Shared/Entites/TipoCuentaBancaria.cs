@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Logistic.Shared.Entites;
 
-public partial class Usuario
+public partial class TipoCuentaBancaria
 {
     /// <summary>
     /// ID
@@ -21,31 +21,6 @@ public partial class Usuario
     /// Descripción
     /// </summary>
     public string Name { get; set; }
-
-    /// <summary>
-    /// Email
-    /// </summary>
-    public string Correo { get; set; }
-
-    /// <summary>
-    /// Celular
-    /// </summary>
-    public string Celular { get; set; }
-
-    /// <summary>
-    /// Clave
-    /// </summary>
-    public string Clave { get; set; }
-
-    /// <summary>
-    /// Foto ID
-    /// </summary>
-    public int? IdFoto { get; set; }
-
-    /// <summary>
-    /// Rol ID
-    /// </summary>
-    public int IdRol { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -71,10 +46,4 @@ public partial class Usuario
     /// Auditoría Update Fecha
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
-
-    public virtual Imagene IdFotoNavigation { get; set; }
-
-    public virtual Role IdRolNavigation { get; set; }
-
-    public virtual ICollection<UsuarioLocale> UsuarioLocales { get; set; } = new List<UsuarioLocale>();
 }

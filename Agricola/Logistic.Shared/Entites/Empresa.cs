@@ -15,7 +15,7 @@ public partial class Empresa
     /// <summary>
     /// RUC
     /// </summary>
-    public string NumeroRuc { get; set; }
+    public string NumeroRUC { get; set; }
 
     /// <summary>
     /// Razón Social
@@ -67,11 +67,11 @@ public partial class Empresa
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<EmpresaLocal> EmpresaLocals { get; set; } = new List<EmpresaLocal>();
+    public virtual ICollection<EmpresaLocal> EmpresaLocal { get; set; } = new List<EmpresaLocal>();
 
     public virtual Direccion IdDireccionNavigation { get; set; }
 
-    public virtual EmpresaGrupo IdGrupoNavigation { get; set; }
+    public virtual EmpresaGrupos IdGrupoNavigation { get; set; }
 
-    public virtual Imagene IdLogoImagenNavigation { get; set; }
+    public virtual Imagenes IdLogoImagenNavigation { get; set; }
 }

@@ -12,77 +12,75 @@ public partial class LogisticContext : DbContext
     {
     }
 
-    public virtual DbSet<Direccion> Direccions { get; set; }
+    public virtual DbSet<Direccion> Direccion { get; set; }
 
-    public virtual DbSet<Empresa> Empresas { get; set; }
+    public virtual DbSet<Empresa> Empresa { get; set; }
 
-    public virtual DbSet<EmpresaGrupo> EmpresaGrupos { get; set; }
+    public virtual DbSet<EmpresaGrupos> EmpresaGrupos { get; set; }
 
-    public virtual DbSet<EmpresaLocal> EmpresaLocals { get; set; }
+    public virtual DbSet<EmpresaLocal> EmpresaLocal { get; set; }
 
-    public virtual DbSet<Imagene> Imagenes { get; set; }
+    public virtual DbSet<Imagenes> Imagenes { get; set; }
 
-    public virtual DbSet<Paise> Paises { get; set; }
+    public virtual DbSet<Paises> Paises { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Roles> Roles { get; set; }
 
-    public virtual DbSet<TipoAlmacen> TipoAlmacens { get; set; }
+    public virtual DbSet<TipoAlmacen> TipoAlmacen { get; set; }
 
-    public virtual DbSet<TipoArticulo> TipoArticulos { get; set; }
+    public virtual DbSet<TipoArticulo> TipoArticulo { get; set; }
 
-    public virtual DbSet<TipoCalificacion> TipoCalificacions { get; set; }
+    public virtual DbSet<TipoCalificacion> TipoCalificacion { get; set; }
 
-    public virtual DbSet<TipoCambio> TipoCambios { get; set; }
+    public virtual DbSet<TipoCambio> TipoCambio { get; set; }
 
-    public virtual DbSet<TipoCompra> TipoCompras { get; set; }
+    public virtual DbSet<TipoCompra> TipoCompra { get; set; }
 
-    public virtual DbSet<TipoCuentaBancarium> TipoCuentaBancaria { get; set; }
+    public virtual DbSet<TipoCuentaBancaria> TipoCuentaBancaria { get; set; }
 
-    public virtual DbSet<TipoCuentaMayor> TipoCuentaMayors { get; set; }
+    public virtual DbSet<TipoCuentaMayor> TipoCuentaMayor { get; set; }
 
-    public virtual DbSet<TipoDireccion> TipoDireccions { get; set; }
+    public virtual DbSet<TipoDireccion> TipoDireccion { get; set; }
 
-    public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
+    public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
 
-    public virtual DbSet<TipoDocumentoIdentidad> TipoDocumentoIdentidads { get; set; }
+    public virtual DbSet<TipoDocumentoIdentidad> TipoDocumentoIdentidad { get; set; }
 
-    public virtual DbSet<TipoFormaPago> TipoFormaPagos { get; set; }
+    public virtual DbSet<TipoFormaPago> TipoFormaPago { get; set; }
 
-    public virtual DbSet<TipoMarcaArticulo> TipoMarcaArticulos { get; set; }
+    public virtual DbSet<TipoMarcaArticulo> TipoMarcaArticulo { get; set; }
 
-    public virtual DbSet<TipoMotivoBaja> TipoMotivoBajas { get; set; }
+    public virtual DbSet<TipoMotivoBaja> TipoMotivoBaja { get; set; }
 
-    public virtual DbSet<TipoMovimiento> TipoMovimientos { get; set; }
+    public virtual DbSet<TipoMovimiento> TipoMovimiento { get; set; }
 
-    public virtual DbSet<TipoProceso> TipoProcesos { get; set; }
+    public virtual DbSet<TipoProceso> TipoProceso { get; set; }
 
-    public virtual DbSet<TipoSocio> TipoSocios { get; set; }
+    public virtual DbSet<TipoSocio> TipoSocio { get; set; }
 
-    public virtual DbSet<TipoSolicitud> TipoSolicituds { get; set; }
+    public virtual DbSet<TipoSolicitud> TipoSolicitud { get; set; }
 
-    public virtual DbSet<TipoValorizacion> TipoValorizacions { get; set; }
+    public virtual DbSet<TipoValorizacion> TipoValorizacion { get; set; }
 
-    public virtual DbSet<TipoVium> TipoVia { get; set; }
+    public virtual DbSet<TipoVia> TipoVia { get; set; }
 
-    public virtual DbSet<TipoZona> TipoZonas { get; set; }
+    public virtual DbSet<TipoZona> TipoZona { get; set; }
 
-    public virtual DbSet<UbigeoDepartamento> UbigeoDepartamentos { get; set; }
+    public virtual DbSet<UbigeoDepartamento> UbigeoDepartamento { get; set; }
 
-    public virtual DbSet<UbigeoDistrito> UbigeoDistritos { get; set; }
+    public virtual DbSet<UbigeoDistrito> UbigeoDistrito { get; set; }
 
-    public virtual DbSet<UbigeoProvincium> UbigeoProvincia { get; set; }
+    public virtual DbSet<UbigeoProvincia> UbigeoProvincia { get; set; }
 
-    public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<UsuarioLocales> UsuarioLocales { get; set; }
 
-    public virtual DbSet<UsuarioLocale> UsuarioLocales { get; set; }
+    public virtual DbSet<Usuarios> Usuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Direccion>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Direccio__3214EC076A5F7908");
-
-            entity.ToTable("Direccion");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -128,23 +126,23 @@ public partial class LogisticContext : DbContext
                 .IsUnicode(false)
                 .HasComment("Nombre Zona");
 
-            entity.HasOne(d => d.IdDistritoNavigation).WithMany(p => p.Direccions)
+            entity.HasOne(d => d.IdDistritoNavigation).WithMany(p => p.Direccion)
                 .HasForeignKey(d => d.IdDistrito)
                 .HasConstraintName("FK_Direccion_UbigeoDistrito");
 
-            entity.HasOne(d => d.IdPaisNavigation).WithMany(p => p.Direccions)
+            entity.HasOne(d => d.IdPaisNavigation).WithMany(p => p.Direccion)
                 .HasForeignKey(d => d.IdPais)
                 .HasConstraintName("FK_Direccion_Paises");
 
-            entity.HasOne(d => d.IdTipoDireccionNavigation).WithMany(p => p.Direccions)
+            entity.HasOne(d => d.IdTipoDireccionNavigation).WithMany(p => p.Direccion)
                 .HasForeignKey(d => d.IdTipoDireccion)
                 .HasConstraintName("FK_Direccion_TipoDireccion");
 
-            entity.HasOne(d => d.IdTipoViaNavigation).WithMany(p => p.Direccions)
+            entity.HasOne(d => d.IdTipoViaNavigation).WithMany(p => p.Direccion)
                 .HasForeignKey(d => d.IdTipoVia)
                 .HasConstraintName("FK_Direccion_TipoVia");
 
-            entity.HasOne(d => d.IdTipoZonaNavigation).WithMany(p => p.Direccions)
+            entity.HasOne(d => d.IdTipoZonaNavigation).WithMany(p => p.Direccion)
                 .HasForeignKey(d => d.IdTipoZona)
                 .HasConstraintName("FK_Direccion_TipoZona");
         });
@@ -152,8 +150,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<Empresa>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Empresa__3214EC071A3D0881");
-
-            entity.ToTable("Empresa");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -176,12 +172,11 @@ public partial class LogisticContext : DbContext
             entity.Property(e => e.IdDireccion).HasComment("Dirección ID");
             entity.Property(e => e.IdGrupo).HasComment("Grupo ID");
             entity.Property(e => e.IdLogoImagen).HasComment("Logo ID");
-            entity.Property(e => e.NumeroRuc)
+            entity.Property(e => e.NumeroRUC)
                 .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasComment("RUC")
-                .HasColumnName("NumeroRUC");
+                .HasComment("RUC");
             entity.Property(e => e.PaginaWeb)
                 .IsRequired()
                 .HasMaxLength(128)
@@ -193,20 +188,20 @@ public partial class LogisticContext : DbContext
                 .IsUnicode(false)
                 .HasComment("Razón Social");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Empresas)
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Empresa)
                 .HasForeignKey(d => d.IdDireccion)
                 .HasConstraintName("FK_Empresa_Direccion");
 
-            entity.HasOne(d => d.IdGrupoNavigation).WithMany(p => p.Empresas)
+            entity.HasOne(d => d.IdGrupoNavigation).WithMany(p => p.Empresa)
                 .HasForeignKey(d => d.IdGrupo)
                 .HasConstraintName("FK_Empresa_EmpresaGrupos");
 
-            entity.HasOne(d => d.IdLogoImagenNavigation).WithMany(p => p.Empresas)
+            entity.HasOne(d => d.IdLogoImagenNavigation).WithMany(p => p.Empresa)
                 .HasForeignKey(d => d.IdLogoImagen)
                 .HasConstraintName("FK_Empresa_Imagenes");
         });
 
-        modelBuilder.Entity<EmpresaGrupo>(entity =>
+        modelBuilder.Entity<EmpresaGrupos>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__EmpresaG__3214EC0766C30F1C");
 
@@ -230,12 +225,11 @@ public partial class LogisticContext : DbContext
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.IdDireccion).HasComment("Dirección ID");
             entity.Property(e => e.IdLogoImagen).HasComment("Logo ID");
-            entity.Property(e => e.NumeroRuc)
+            entity.Property(e => e.NumeroRUC)
                 .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasComment("RUC")
-                .HasColumnName("NumeroRUC");
+                .HasComment("RUC");
             entity.Property(e => e.PaginaWeb)
                 .HasMaxLength(128)
                 .IsUnicode(false)
@@ -259,8 +253,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__EmpresaL__3214EC077E1ADA85");
 
-            entity.ToTable("EmpresaLocal");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -281,29 +273,28 @@ public partial class LogisticContext : DbContext
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.IdDireccion).HasComment("Dirección ID");
             entity.Property(e => e.IdEmpresa).HasComment("Empresa ID");
-            entity.Property(e => e.NumeroRuc)
+            entity.Property(e => e.NumeroRUC)
                 .IsRequired()
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasComment("RUC")
-                .HasColumnName("NumeroRUC");
+                .HasComment("RUC");
             entity.Property(e => e.RazonSocial)
                 .IsRequired()
                 .HasMaxLength(128)
                 .IsUnicode(false)
                 .HasComment("Razón Social");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.EmpresaLocals)
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.EmpresaLocal)
                 .HasForeignKey(d => d.IdDireccion)
                 .HasConstraintName("FK_EmpresaLocal_Direccion");
 
-            entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.EmpresaLocals)
+            entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.EmpresaLocal)
                 .HasForeignKey(d => d.IdEmpresa)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_EmpresaLocal_Empresa");
         });
 
-        modelBuilder.Entity<Imagene>(entity =>
+        modelBuilder.Entity<Imagenes>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Imagenes__3214EC0718872A14");
 
@@ -336,7 +327,7 @@ public partial class LogisticContext : DbContext
                 .HasComment("Nombre");
         });
 
-        modelBuilder.Entity<Paise>(entity =>
+        modelBuilder.Entity<Paises>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Paises__3214EC0768B18D6D");
 
@@ -369,7 +360,7 @@ public partial class LogisticContext : DbContext
                 .HasComment("Descripción");
         });
 
-        modelBuilder.Entity<Role>(entity =>
+        modelBuilder.Entity<Roles>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Roles__3214EC07AB7E9447");
 
@@ -406,8 +397,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoAlma__3214EC0736E29B8A");
 
-            entity.ToTable("TipoAlmacen");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -440,8 +429,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoArticulo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoArti__3214EC074397039B");
-
-            entity.ToTable("TipoArticulo");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -476,8 +463,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoCali__3214EC07F417F360");
 
-            entity.ToTable("TipoCalificacion");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -510,8 +495,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoCambio>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoCamb__3214EC0771C57EF1");
-
-            entity.ToTable("TipoCambio");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -552,8 +535,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoComp__3214EC07A19E3465");
 
-            entity.ToTable("TipoCompra");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -583,7 +564,7 @@ public partial class LogisticContext : DbContext
                 .HasComment("Descripción");
         });
 
-        modelBuilder.Entity<TipoCuentaBancarium>(entity =>
+        modelBuilder.Entity<TipoCuentaBancaria>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoCuen__3214EC071CDA998C");
 
@@ -620,8 +601,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoCuen__3214EC07465EFDDB");
 
-            entity.ToTable("TipoCuentaMayor");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -654,8 +633,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoDireccion>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoDire__3214EC0753EA705A");
-
-            entity.ToTable("TipoDireccion");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -690,8 +667,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoDocu__3214EC0795E6B3A4");
 
-            entity.ToTable("TipoDocumento");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -724,8 +699,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoDocumentoIdentidad>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoDocu__3214EC07699345D3");
-
-            entity.ToTable("TipoDocumentoIdentidad");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -768,8 +741,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoForm__3214EC078C1B120F");
 
-            entity.ToTable("TipoFormaPago");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -802,8 +773,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoMarcaArticulo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoMarc__3214EC07696CF1BB");
-
-            entity.ToTable("TipoMarcaArticulo");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -838,8 +807,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoMoti__3214EC0764A09313");
 
-            entity.ToTable("TipoMotivoBaja");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -872,8 +839,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoMovimiento>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoMovi__3214EC07E438A6A3");
-
-            entity.ToTable("TipoMovimiento");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -917,8 +882,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoProc__3214EC07C8946539");
 
-            entity.ToTable("TipoProceso");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -951,8 +914,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<TipoSocio>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoSoci__3214EC075FF7F6B4");
-
-            entity.ToTable("TipoSocio");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -987,8 +948,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoSoli__3214EC07AB9552EB");
 
-            entity.ToTable("TipoSolicitud");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -1022,8 +981,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoValo__3214EC073D8F9652");
 
-            entity.ToTable("TipoValorizacion");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -1053,7 +1010,7 @@ public partial class LogisticContext : DbContext
                 .HasComment("Descripción");
         });
 
-        modelBuilder.Entity<TipoVium>(entity =>
+        modelBuilder.Entity<TipoVia>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoVia__3214EC070C41CC0B");
 
@@ -1090,8 +1047,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__TipoZona__3214EC079583E7C4");
 
-            entity.ToTable("TipoZona");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -1124,8 +1079,6 @@ public partial class LogisticContext : DbContext
         modelBuilder.Entity<UbigeoDepartamento>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__UbigeoDe__3214EC078BEF15CB");
-
-            entity.ToTable("UbigeoDepartamento");
 
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
@@ -1160,8 +1113,6 @@ public partial class LogisticContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__UbigeoDi__3214EC071A1AD2C0");
 
-            entity.ToTable("UbigeoDistrito");
-
             entity.Property(e => e.Id).HasComment("ID");
             entity.Property(e => e.AuditInsertFecha)
                 .HasDefaultValueSql("(getdate())")
@@ -1191,13 +1142,13 @@ public partial class LogisticContext : DbContext
                 .IsUnicode(false)
                 .HasComment("Descripción");
 
-            entity.HasOne(d => d.IdProvinciaNavigation).WithMany(p => p.UbigeoDistritos)
+            entity.HasOne(d => d.IdProvinciaNavigation).WithMany(p => p.UbigeoDistrito)
                 .HasForeignKey(d => d.IdProvincia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UbigeoDistrito_UbigeoProvincia");
         });
 
-        modelBuilder.Entity<UbigeoProvincium>(entity =>
+        modelBuilder.Entity<UbigeoProvincia>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__UbigeoPr__3214EC0750B7E584");
 
@@ -1236,7 +1187,42 @@ public partial class LogisticContext : DbContext
                 .HasConstraintName("FK_UbigeoProvincia_UbigeoDepartamento");
         });
 
-        modelBuilder.Entity<Usuario>(entity =>
+        modelBuilder.Entity<UsuarioLocales>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UsuarioL__3214EC071D970F78");
+
+            entity.Property(e => e.Id).HasComment("Id");
+            entity.Property(e => e.AuditInsertFecha)
+                .HasComment("Auditoría Insert Fecha")
+                .HasColumnType("datetime");
+            entity.Property(e => e.AuditInsertUsuario)
+                .IsRequired()
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasComment("Auditoría Insert User");
+            entity.Property(e => e.AuditUpdateFecha)
+                .HasComment("Auditoría Update Fecha")
+                .HasColumnType("datetime");
+            entity.Property(e => e.AuditUpdateUsuario)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasComment("Auditoría Update Fecha");
+            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.IdLocal).HasComment("Local ID");
+            entity.Property(e => e.IdUsuario).HasComment("Usuario ID");
+
+            entity.HasOne(d => d.IdLocalNavigation).WithMany(p => p.UsuarioLocales)
+                .HasForeignKey(d => d.IdLocal)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsuarioLocales_EmpresaLocal");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.UsuarioLocales)
+                .HasForeignKey(d => d.IdUsuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsuarioLocales_Usuarios");
+        });
+
+        modelBuilder.Entity<Usuarios>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Usuarios__3214EC073EC1A31C");
 
@@ -1291,41 +1277,6 @@ public partial class LogisticContext : DbContext
                 .HasForeignKey(d => d.IdRol)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Usuarios_Roles");
-        });
-
-        modelBuilder.Entity<UsuarioLocale>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__UsuarioL__3214EC071D970F78");
-
-            entity.Property(e => e.Id).HasComment("Id");
-            entity.Property(e => e.AuditInsertFecha)
-                .HasComment("Auditoría Insert Fecha")
-                .HasColumnType("datetime");
-            entity.Property(e => e.AuditInsertUsuario)
-                .IsRequired()
-                .HasMaxLength(60)
-                .IsUnicode(false)
-                .HasComment("Auditoría Insert User");
-            entity.Property(e => e.AuditUpdateFecha)
-                .HasComment("Auditoría Update Fecha")
-                .HasColumnType("datetime");
-            entity.Property(e => e.AuditUpdateUsuario)
-                .HasMaxLength(60)
-                .IsUnicode(false)
-                .HasComment("Auditoría Update Fecha");
-            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
-            entity.Property(e => e.IdLocal).HasComment("Local ID");
-            entity.Property(e => e.IdUsuario).HasComment("Usuario ID");
-
-            entity.HasOne(d => d.IdLocalNavigation).WithMany(p => p.UsuarioLocales)
-                .HasForeignKey(d => d.IdLocal)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_UsuarioLocales_EmpresaLocal");
-
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.UsuarioLocales)
-                .HasForeignKey(d => d.IdUsuario)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_UsuarioLocales_Usuarios");
         });
 
         OnModelCreatingPartial(modelBuilder);

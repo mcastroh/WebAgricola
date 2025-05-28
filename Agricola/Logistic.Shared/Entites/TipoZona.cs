@@ -47,5 +47,5 @@ public partial class TipoZona
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<Direccion> Direccions { get; set; } = new List<Direccion>();
+    public virtual ICollection<Direccion> Direccion { get; set; } = new List<Direccion>();
 }

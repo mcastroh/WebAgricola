@@ -15,7 +15,7 @@ public partial class EmpresaLocal
     /// <summary>
     /// RUC
     /// </summary>
-    public string NumeroRuc { get; set; }
+    public string NumeroRUC { get; set; }
 
     /// <summary>
     /// Razón Social
@@ -61,5 +61,5 @@ public partial class EmpresaLocal
 
     public virtual Empresa IdEmpresaNavigation { get; set; }
 
-    public virtual ICollection<UsuarioLocale> UsuarioLocales { get; set; } = new List<UsuarioLocale>();
+    public virtual ICollection<UsuarioLocales> UsuarioLocales { get; set; } = new List<UsuarioLocales>();
 }

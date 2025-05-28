@@ -87,19 +87,19 @@ public partial class Direccion
     /// </summary>
     public string AuditUpdateUsuario { get; set; }
 
-    public virtual ICollection<EmpresaGrupo> EmpresaGrupos { get; set; } = new List<EmpresaGrupo>();
+    public virtual ICollection<Empresa> Empresa { get; set; } = new List<Empresa>();
 
-    public virtual ICollection<EmpresaLocal> EmpresaLocals { get; set; } = new List<EmpresaLocal>();
+    public virtual ICollection<EmpresaGrupos> EmpresaGrupos { get; set; } = new List<EmpresaGrupos>();
 
-    public virtual ICollection<Empresa> Empresas { get; set; } = new List<Empresa>();
+    public virtual ICollection<EmpresaLocal> EmpresaLocal { get; set; } = new List<EmpresaLocal>();
 
     public virtual UbigeoDistrito IdDistritoNavigation { get; set; }
 
-    public virtual Paise IdPaisNavigation { get; set; }
+    public virtual Paises IdPaisNavigation { get; set; }
 
     public virtual TipoDireccion IdTipoDireccionNavigation { get; set; }
 
-    public virtual TipoVium IdTipoViaNavigation { get; set; }
+    public virtual TipoVia IdTipoViaNavigation { get; set; }
 
     public virtual TipoZona IdTipoZonaNavigation { get; set; }
 }
