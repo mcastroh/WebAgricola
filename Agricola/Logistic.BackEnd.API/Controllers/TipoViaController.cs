@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Azure;
 using Logistic.BackEnd.API.Mappings;
-using Logistic.BackEnd.API.Models;
 using Logistic.BackEnd.Data.UnitsOfWork.Interfaces;
 using Logistic.Shared.DTOs;
 using Logistic.Shared.Entites;
@@ -106,13 +104,9 @@ public class TipoViaController : GenericController<TipoVia>
     [HttpPost("add")]
     public async Task<IActionResult> PostAsync(TablaGlobalDto entityDto)
     {
-        var newEntity = new TipoVia();
-
-        // var newEntity = AutomapperGeneric<TablaGlobalDto<TipoVia>, TipoVia>.Map(entityDto);
-        // var newEntity = AutomapperGeneric<TablaGlobalDto, TipoVia>.Map(entityDto);
-        //var newEntity = AutomapperGeneric<TipoVia, TipoVia>.Map(entityDto);
-        //newEntity.AuditInsertFecha = DateTime.Now;
-        //newEntity.AuditInsertUsuario = entityDto.AuditInsertUsuario;
+        var newEntity = AutomapperGeneric<TablaGlobalDto, TipoVia>.Map(entityDto);
+        newEntity.AuditInsertFecha = DateTime.Now;
+        newEntity.AuditInsertUsuario = entityDto.AuditUsuario;
 
         //dto.AdminId = User.Identity!.Name!;
         var action = await _unitOfWork.AddAsync(newEntity);
@@ -125,13 +119,13 @@ public class TipoViaController : GenericController<TipoVia>
     /// </summary>
     /// <param name="entityDto"></param>
     /// <returns></returns>
-    [HttpPut]
-    public override async Task<IActionResult> PutAsync(TipoVia entityDto)
+    [HttpPut("update")]
+    public async Task<IActionResult> PutAsync(TablaGlobalDto entityDto)
     {
         var response = await _unitOfWork.GetAsync(entityDto.Id);
         if (response == null) return NotFound();
 
-        var updateEntity = AutomapperGeneric<TipoVia, TipoVia>.Map(entityDto);
+        var updateEntity = AutomapperGeneric<TablaGlobalDto, TipoVia>.Map(entityDto);
 
         updateEntity.Codigo = entityDto.Codigo;
         updateEntity.Name = entityDto.Name;
@@ -139,7 +133,7 @@ public class TipoViaController : GenericController<TipoVia>
         //updateEntity.AuditInsertFecha = response.Result.AuditInsertFecha;
         //updateEntity.AuditInsertUsuario = response.Result.AuditInsertUsuario;
         updateEntity.AuditUpdateFecha = DateTime.Now;
-        updateEntity.AuditUpdateUsuario = entityDto.AuditUpdateUsuario;
+        updateEntity.AuditUpdateUsuario = entityDto.AuditUsuario;
 
         var action = await _unitOfWork.UpdateAsync(updateEntity);
         if (action.IsSuccess) return Ok(action.Result);

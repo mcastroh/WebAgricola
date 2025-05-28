@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Logistic.BackEnd.API.Mappings;
-using Logistic.BackEnd.API.Models;
 using Logistic.BackEnd.Data.UnitsOfWork.Interfaces;
 using Logistic.Shared.DTOs;
 using Logistic.Shared.Entites;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Net;
 
 namespace Logistic.BackEnd.API.Controllers;
 
