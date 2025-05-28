@@ -7,18 +7,14 @@ builder.Services.AddDbContext<LogisticContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CnSqlServer")));
 
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-
     app.UseSwaggerUI(option =>
     {
         option.SwaggerEndpoint("../swagger/v1/swagger.json", "Logística API v1");
@@ -26,9 +22,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
