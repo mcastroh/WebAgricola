@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Logistic.BackEnd.Data.Data;
 
-public partial class dbLogisticaContext : DbContext
+public partial class LogisticContext : DbContext
 {
-    public dbLogisticaContext(DbContextOptions<dbLogisticaContext> options)
+    public LogisticContext(DbContextOptions<LogisticContext> options)
         : base(options)
     {
     }
