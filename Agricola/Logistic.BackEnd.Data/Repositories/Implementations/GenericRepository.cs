@@ -51,7 +51,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return new ActionResponse<T>
             {
                 IsSuccess = false,
-                Message = "ERR001"
+                Message = "Registro no encontrado."
             };
         }
 
@@ -71,7 +71,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return new ActionResponse<T>
             {
                 IsSuccess = false,
-                Message = "ERR002"
+                Message = "No se puede borrar, porque tiene registros relacionados."
             };
         }
     }
@@ -85,7 +85,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return new ActionResponse<T>
             {
                 IsSuccess = false,
-                Message = "ERR001"
+                Message = "Registro no encontrado."
             };
         }
 
@@ -107,10 +107,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public virtual async Task<ActionResponse<T>> UpdateAsync(T entity)
     {
-        _context.Update(entity);
-
         try
         {
+            _context.Update(entity);
+
             await _context.SaveChangesAsync();
 
             return new ActionResponse<T>
@@ -143,7 +143,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return new ActionResponse<T>
         {
             IsSuccess = false,
-            Message = "ERR003"
+            Message = "Ya existe el registro que estas intentando crear."
         };
     }
 
