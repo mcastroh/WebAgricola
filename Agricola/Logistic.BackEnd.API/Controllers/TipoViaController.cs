@@ -9,8 +9,6 @@ namespace Logistic.BackEnd.API.Controllers;
 
 //[Authorize]
 //[Produces("application/json")]
-//[Route("api/[controller]")]
-//[ApiController]
 
 [ApiController]
 [Route("api/[controller]")]
@@ -52,7 +50,7 @@ public class TipoViaController : GenericController<TipoVia>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public override async Task<IActionResult> GetAsync(int id)
     {
         var response = await _unitOfWork.GetAsync(id);
@@ -96,47 +94,102 @@ public class TipoViaController : GenericController<TipoVia>
 
     #endregion HttpGet => Recuperar tipo de vía por página
 
+    #region HttpPost => Adiciona tipo de vía
+
     /// <summary>
     /// Adicionar tipo de vía
     /// </summary>
     /// <param name="entityDto"></param>
     /// <returns></returns>
-    [HttpPost("add")]
+    [HttpPost]
     public async Task<IActionResult> PostAsync(TablaGlobalDto entityDto)
     {
         var newEntity = AutomapperGeneric<TablaGlobalDto, TipoVia>.Map(entityDto);
         newEntity.AuditInsertFecha = DateTime.Now;
         newEntity.AuditInsertUsuario = entityDto.AuditUsuario;
 
-        //dto.AdminId = User.Identity!.Name!;
         var action = await _unitOfWork.AddAsync(newEntity);
-        if (action.IsSuccess) return Ok(action.Result);
+        if (action.IsSuccess) return Ok(AutomapperGeneric<TipoVia, TablaGlobalDto>.Map(newEntity));
         return BadRequest(action.Message);
     }
+
+    #endregion HttpPost => Adiciona tipo de vía
+
+    #region HttpPut => Actualiza tipo de vía
 
     /// <summary>
     /// Actualizar tipo de vía
     /// </summary>
     /// <param name="entityDto"></param>
     /// <returns></returns>
-    [HttpPut("update")]
+    [HttpPut]
     public async Task<IActionResult> PutAsync(TablaGlobalDto entityDto)
     {
         var response = await _unitOfWork.GetAsync(entityDto.Id);
-        if (response == null) return NotFound();
+        if (!response.IsSuccess) return NotFound();
 
-        var updateEntity = AutomapperGeneric<TablaGlobalDto, TipoVia>.Map(entityDto);
+        var updateEntity = response.Result;
+        if (updateEntity is null) return NotFound();
 
         updateEntity.Codigo = entityDto.Codigo;
         updateEntity.Name = entityDto.Name;
-        updateEntity.EsActivo = entityDto.EsActivo;
-        //updateEntity.AuditInsertFecha = response.Result.AuditInsertFecha;
-        //updateEntity.AuditInsertUsuario = response.Result.AuditInsertUsuario;
         updateEntity.AuditUpdateFecha = DateTime.Now;
         updateEntity.AuditUpdateUsuario = entityDto.AuditUsuario;
 
         var action = await _unitOfWork.UpdateAsync(updateEntity);
-        if (action.IsSuccess) return Ok(action.Result);
+        if (action.IsSuccess) return Ok(AutomapperGeneric<TipoVia, TablaGlobalDto>.Map(updateEntity));
         return BadRequest(action.Message);
     }
+
+    #endregion HttpPut => Actualiza tipo de vía
+
+    #region HttpDelete => Elimina tipo de vía
+
+    /// <summary>
+    /// Elimina tipo de vía
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id:int}")]
+    public virtual async Task<IActionResult> DeletesAsync(int id)
+    {
+        var action = await _unitOfWork.DeleteAsync(id);
+        if (action.IsSuccess) return NoContent();
+        return BadRequest(action.Message);
+    }
+
+    #endregion HttpDelete => Elimina tipo de vía
+
+    #region NonAction => Ignora método PostAsync
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [NonAction]
+    public override async Task<IActionResult> PostAsync(TipoVia dto)
+    {
+        return Ok();
+    }
+
+    #endregion NonAction => Ignora método PostAsync
+
+    #region NonAction => Ignora método PutAsync
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [NonAction]
+    public override async Task<IActionResult> PutAsync(TipoVia dto)
+    {
+        return Ok();
+    }
+
+    #endregion NonAction => Ignora método PutAsync
+
+    #region NonAction => Ignora método DeleteAsync
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [NonAction]
+    public override async Task<IActionResult> DeleteAsync(int id)
+    {
+        return Ok();
+    }
+
+    #endregion NonAction => Ignora método DeleteAsync
 }

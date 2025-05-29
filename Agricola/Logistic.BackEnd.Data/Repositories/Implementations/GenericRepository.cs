@@ -78,9 +78,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public virtual async Task<ActionResponse<T>> GetAsync(int id)
     {
-        var row = await _entity.FindAsync(id);
+        //var row = await _entity.FindAsync(id); 
 
-        if (row == null)
+        var entity = await _context.Set<T>().FindAsync(id);
+
+        if (entity == null)
         {
             return new ActionResponse<T>
             {
@@ -89,11 +91,28 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             };
         }
 
+        _context.Entry(entity).State = EntityState.Detached;
+
         return new ActionResponse<T>
         {
             IsSuccess = true,
-            Result = row
+            Result = entity
         };
+
+        //if (row == null)
+        //{
+        //    return new ActionResponse<T>
+        //    {
+        //        IsSuccess = false,
+        //        Message = "Registro no encontrado."
+        //    };
+        //}
+
+        //return new ActionResponse<T>
+        //{
+        //    IsSuccess = true,
+        //    Result = row
+        //};
     }
 
     public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync()
