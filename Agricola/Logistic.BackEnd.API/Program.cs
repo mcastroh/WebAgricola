@@ -17,9 +17,18 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(option => option.SwaggerEndpoint("../swagger/v1/swagger.json", "Logística API v1"));
+    app.MapOpenApi();
+
+    //app.UseSwagger();
+    //app.UseSwaggerUI(option => option.SwaggerEndpoint("../swagger/v1/swagger.json", "Logística API v1"));
 }
+
+app.UseSwagger();
+
+app.UseSwaggerUI(option =>
+{
+    option.SwaggerEndpoint("../swagger/v1/swagger.json", "Agrícola.Logística API v1");
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

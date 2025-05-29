@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logistic.Tests", "Logistic.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logistic.Shared", "Logistic.Shared\Logistic.Shared.csproj", "{95EAB806-ACDD-40BA-AA10-CC6363AEDD65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logistic.FrontEnd", "Logistic.FrontEnd\Logistic.FrontEnd.csproj", "{3625F2FE-521C-42CB-8AFD-3F961F7555AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{95EAB806-ACDD-40BA-AA10-CC6363AEDD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95EAB806-ACDD-40BA-AA10-CC6363AEDD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95EAB806-ACDD-40BA-AA10-CC6363AEDD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3625F2FE-521C-42CB-8AFD-3F961F7555AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3625F2FE-521C-42CB-8AFD-3F961F7555AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3625F2FE-521C-42CB-8AFD-3F961F7555AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3625F2FE-521C-42CB-8AFD-3F961F7555AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{188BA64F-8828-42C8-B7CA-007A128AC90C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{84C71B9D-FBB2-4E8D-879D-1522B0F2F81C} = {1B03D05E-B2D6-4D8A-A347-42262312C016}
 		{95EAB806-ACDD-40BA-AA10-CC6363AEDD65} = {AB6F45DF-66C9-4738-A56C-90047FB53540}
+		{3625F2FE-521C-42CB-8AFD-3F961F7555AD} = {CB812C2B-F8EB-4B6B-BC37-AB3B4CE7BFC4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A6FB83A-1089-4F0D-87C8-EB01B904BA3B}
