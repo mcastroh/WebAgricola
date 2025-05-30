@@ -10,4 +10,12 @@
     <Compile Remove="Controllers\GenericController.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logistic.Shared\Logistic.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

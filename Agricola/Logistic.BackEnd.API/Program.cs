@@ -30,6 +30,12 @@ app.UseSwaggerUI(option =>
     option.SwaggerEndpoint("../swagger/v1/swagger.json", "Agrícola.Logística API v1");
 });
 
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
