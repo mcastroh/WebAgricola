@@ -1,0 +1,14 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: solid 1px #34b1b9;
+}
+
+th {
+    background-color: black;
+    color: #ffffff;
+    border: solid 1px #34b1b9;
+}

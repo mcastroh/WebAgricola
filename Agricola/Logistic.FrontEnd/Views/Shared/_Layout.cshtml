@@ -1,19 +1,486 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>App Integral - @ViewData["Title"]</title>
+
+    @*  <title>App Colca Chincha</title> *@
+
+    <!-- Custom fonts for this template -->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- datatables -->
+    @* <link href="~/lib/datatables/css/datatables.bootstrap.min.css" rel="stylesheet" /> *@
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/vendor/toastr/toastr.min.css" rel="stylesheet">
+    <link href="~/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css" />
+
+
+    <link href="~/vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="~/vendor/select2/select2.min.css" rel="stylesheet">
+
+    @await RenderSectionAsync("Estilos", required: false)
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">CrawFord</div>
+
+                @*    <div class="sidebar-brand-text mx-6">Colca Chincha</div> *@
+
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "DashBoard")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Administración Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Administración</span>
+                </a>
+                <div id="collapseAdministracion" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <span style="color: blue; font-weight: bold; font-size: 20px;">&nbsp;&nbsp;Configuración </span>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoVia")"><font color="red">Tipos de Vías</font></a>
+
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "MachTipoAlmacen")"><font color="green">Mach Tipo Almacén Cont Génerico</font></a>
+
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "UbigeoDepartamento")"><font color="red">Ubicaciones Geográficas</font></a>
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDireccion")"><font color="blue">Tipos de Direcciones</font></a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoZona")"><font color=" blue">Tipos de Zonas</font></a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Paises")"><font color="blue">Países</font></a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "Roles")"><font color="green">Roles</font></a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoAlmacen")"><font color="green">Tipos de Almacenes</font></a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "Empresa")">Empresa</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Usuario")">Usuarios</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Moneda")">Monedas</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "UbigeoDepartamento")">Ubicaciones Geográficas</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoCalificacion")">Tipos de Calificación</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoCuentaBancaria")">Tipos Cuentas Bancarias</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDireccion")">Tipos de Direcciones</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoFlete")">Tipos de Fletes</a>
+
+                        <hr />
+                        <span style="color: blue; font-weight: bold; font-size: 20px;">&nbsp;&nbsp;Inventarios </span>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoArticulo")">Tipos de Artículos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "GrupoArticulo")">Grupos de Artículos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "UnidadMedida")">Unidades de Medida</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoValorizacion")">Tipos de Valorización</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoCuentaMayor")">Tipos de Cuenta Mayor</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "UnidadMedidaGrupos")">Grupo Unidades de Medida</a>
+
+                        <hr />
+                        <span style="color: blue; font-weight: bold; font-size: 20px;">&nbsp;&nbsp;SUNAT </span>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDocumentoIdentidad")">Tipos Docmto Identidad</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "SunatTipoExistencia")">Tipos de Existencia</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SunatTipoDetraccion")">Tipos de Detracción</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDocumentoVenta")">Tipos Docmto Venta</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "ImpuestoValores")">Tipos de Impuestos</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Centro de Costos Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCentroCostos">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Centro de Costos</span>
+                </a>
+                <div id="collapseCentroCostos" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "UnidadGasto")">Unidades de Gastos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "NivelCentroCosto")">Niveles Centro Costos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Cultivo")">Tipos de Cultivos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SistemaConduccion")">Tipos de Conducción</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "CentroCostos_N0_Fundo")">Centros de Costos</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Datos Maestros Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDatosMaestros ">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span> Datos Maestros</span>
+                </a>
+                <div id="collapseDatosMaestros" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "Articulo")"> Artículos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Servicios")"> Servicios</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SocioColaboradores")">Colaboradores</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SocioGruposEconomicos")">Grupos Económicos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SocioProveedores")">Proveedores</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SocioClientes")">Clientes</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Vehiculos")">Vehículos</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Proveedores Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProveedores">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Proveedores</span>
+                </a>
+                <div id="collapseProveedores" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("CotizaProveedoresIndex", "Cotizacion")"> Cotización</a>
+                        <a class="collapse-item" href="@Url.Action("Historial", "Cotizacion")">Historial</a>
+                        <a class="collapse-item" href="@Url.Action("Index_Conf_Cotizacion", "Configuracion")"> Configuración</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Ordenes de Compra Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Compras</span>
+                </a>
+                <div id="collapseCompras" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "xMachPruebas")"> Pruebas MACH</a>
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasSolicitud")"> Solicitudes</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasCotizacion")"> Cotizaciones</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasOrdenes")"> Ordenes de Compra</a>
+
+                        <a class="collapse-item" href="@Url.Action("HistorialOrdenesCompra", "OrdenCompra")">Historial</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasEntradas")"> Entrada de Mercancías</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasSolicitudDevolucion")"> Solicitud Devolución Mercancías</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "ComprasDevoluciones")"> Devolución de Mercancías</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "OrdenCompra")"> De Mercaderías</a>
+                        <a class="collapse-item" href="@Url.Action("IngresosPorCompras_01_Index", "OperacionesStockPorCompras")"> Entrada por Compras</a>
+                        <a class="collapse-item" href="@Url.Action("HistorialOrdenesCompra", "OrdenCompra")">Historial</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Ordenes de Servicio Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServicios">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Servicios</span>
+                </a>
+                <div id="collapseServicios" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "OrdenServicio")"> De Servicios</a>
+                        <a class="collapse-item" href="@Url.Action("HistorialOrdenesServicios", "OrdenServicio")">Historial</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Nav Item - Ventas Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Ventas</span>
+                </a>
+                <div id="collapseVentas" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "Ventas")">Registrar Ventas</a>
+                        <a class="collapse-item" href="@Url.Action("Historial", "Ventas")">Historial Ventas</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+            <!-- Nav Item - Operaciones de Stock Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOperacionesStock">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Operaciones de Stock</span>
+                </a>
+                <div id="collapseOperacionesStock" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioEntradas")"> Entrada Mercancías</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioSalidas")"> Salida Mercancías</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioSalidas")"> Solicitud de Traslado</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioTransferencias")"> Transferencia de Stock</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioFisico")"> Recuento de Inventario</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioRevalorizacion")"> Revalorización Inventarios</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "InventarioAperturaSaldos")"> Saldo Apertura Inventarios</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Nav Item - Reportes Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reportes</span>
+                </a>
+                <div id="collapseReportes" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "Reporte")">Reporte de Ventas</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Carga Datos desde EXCEL -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCargaExcel">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Carga Datos desde EXCEL</span>
+                </a>
+                <div id="collapseCargaExcel" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "CargaExcel")">Centros de Costos</a>
+                        <a class="collapse-item" href="@Url.Action("IndexProductos", "CargaExcel")">Productos</a>
+                        <a class="collapse-item" href="@Url.Action("IndexJavier", "CargaExcel")">Data Javier Topy</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Nav Item - Pruebas MACH Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMACH">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Pruebas MACH</span>
+                </a>
+                <div id="collapseMACH" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        @*   <a class="collapse-item" href="@Url.Action("Index", "CargaExcel")">Carga Excel</a> *@
+
+                        <a class="collapse-item" href="@Url.Action("Index", "aMach_01_AccesoDenegado")">Acceso Denegado</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "MachDcmtosBase64")">Base64 EXCEL</a>
+
+
+                        <a class="collapse-item" href="@Url.Action("LeerExcel", "MachPruebas")">Leer EXCEL</a>
+
+
+                        <a class="collapse-item" href="@Url.Action("Index", "Imagen")">Imagenes en el SQL SERVER</a>
+
+                        <a class="collapse-item" href="@Url.Action("Crear", "Cliente")">Crear Cliente</a>
+
+                        <a class="collapse-item" href="@Url.Action("DemoSelect2_Dinamico", "MachPruebas")">Demo Select2 Dinámico</a>
+                        <a class="collapse-item" href="@Url.Action("DemoSelect2", "MachPruebas")">Demo Select2</a>
+
+                        <a class="collapse-item" href="@Url.Action("Index", "Resumen")">Maestro Detalles</a>
+
+
+
+                        <a class="collapse-item" href="@Url.Action("EnviarClave", "PlantillaCorreo")">Plantilla Enviar Clave</a>
+                        <a class="collapse-item" href="@Url.Action("RestablecerClave", "PlantillaCorreo")">Plantilla Restablecer Clave</a>
+
+
+                        <a class="collapse-item" href="@Url.Action("LoadVistas", "MachPruebas")">Cargar Vistas</a>
+
+
+
+
+                        <a class="collapse-item" href="@Url.Action("EnviarCorreo", "MachPruebas")">Enviar Correos</a>
+                        <a class="collapse-item" href="@Url.Action("GenerarClave", "MachPruebas")">Generar Clave</a>
+                        <a class="collapse-item" href="@Url.Action("EncriptarClave", "MachPruebas")">Encriptar Clave</a>
+
+                        @*   <a class="collapse-item" href="@Url.Action("Index", "RackClase")">Tipos de Racks</a>
+                        <a class="collapse-item" href="@Url.Action("M01_VistaParcial_DesdeUnSelect", "A01Mach")">Entradas Almacén con O/C</a>
+ *@
+
+                    </div>
+                </div>
+
+            </li>
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Marco Castro</span>
+                                <img class="img-profile rounded-circle"
+                                     src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Perfil", "Home")">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="~/vendor/jquery-ui/idioma/datepicker-es.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.js"></script>
+    <script src="~/vendor/toastr/toastr.min.js"></script>
+    <script src="~/vendor/sweetalert/sweetalert.js"></script>
+    <script src="~/vendor/loadingoverlay/loadingoverlay.min.js"></script>
+
+    <!-- datatables -->
+    @*  <script src="~/lib/datatables/js/jquery.datatables.min.js"></script>
+    <script src="~/lib/datatables/js/datatables.bootstrap.min.js"></script> *@
+    <script src="~/vendor/jquery-ui/idioma/datepicker-es.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+    <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Logistic.FrontEnd</title>
+    <title>@ViewData["Title"] - ApiWeb.Logistica</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Logistic.FrontEnd.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ApiWeb.Logistica.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Logistic.FrontEnd</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ApiWeb.Logistica</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,9 +493,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TipoVia" asp-action="Index">Tipo Vía</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "Empresas")">Empresas</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="collapse-item" href="@Url.Action("Index", "TipoAlmacen")">Tipos Almacenes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="collapse-item" href="@Url.Action("Index", "jsTipoAlmacen")">Tipos Almacenes JS</a>
+                        </li>
+                        
+
                     </ul>
                 </div>
             </div>
@@ -42,7 +521,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Logistic.FrontEnd - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - ApiWeb.Logistica - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -51,3 +530,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+ *@

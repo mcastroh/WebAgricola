@@ -1,7 +1,7 @@
 ﻿using Logistic.FrontEnd.Repositories;
 using Logistic.Shared.DTOs;
-using Logistic.Shared.Entites;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Logistic.FrontEnd.Controllers;
 
@@ -20,13 +20,39 @@ public class TipoViaController : Controller
 
     #region Index
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/Tipovia");
         return View();
     }
 
     #endregion Index
+
+    [HttpGet]
+    public async Task<IActionResult> ListaAll()
+    {
+        var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/tipoVia");
+        return StatusCode(StatusCodes.Status200OK, new { data = query.Response });
+    }
+
+    //[HttpGet]
+    //public async Task<IActionResult> ListaAll()
+    //{
+    //    var datos = new List<TableGlobal>();
+    //    var (urlBase, token) = await _autenticarService.Autenticar();
+    //    var httpClient = GenericRequest.RequestApi(urlBase, token.token);
+
+    //    using (var response = await httpClient.GetAsync("/api/tipoVia"))
+    //    {
+    //        if (response.IsSuccessStatusCode)
+    //        {
+    //            var content = await response.Content.ReadAsStringAsync();
+    //            datos = JsonConvert.DeserializeObject<List<TableGlobal>>(content);
+    //            if (datos == null) datos = new List<TableGlobal>();
+    //        }
+    //    }
+
+    //    return StatusCode(StatusCodes.Status200OK, new { data = datos });
+    //}
 
     //public TipoViaController()
     //{ }
