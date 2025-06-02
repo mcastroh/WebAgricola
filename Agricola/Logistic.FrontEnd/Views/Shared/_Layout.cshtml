@@ -77,6 +77,10 @@
                         <span style="color: blue; font-weight: bold; font-size: 20px;">&nbsp;&nbsp;Configuración </span>
 
                         <a class="collapse-item" href="@Url.Action("Index", "TipoVia")"><font color="red">Tipos de Vías</font></a>
+                       
+                        @await Component.InvokeAsync("TipoVia")
+                        
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoArticulo")"><font color="red">Tipos de Articulos</font></a>
 
 
 

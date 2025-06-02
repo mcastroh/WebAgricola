@@ -1,17 +1,17 @@
 ﻿using Logistic.FrontEnd.Repositories;
 using Logistic.Shared.DTOs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Logistic.FrontEnd.Controllers;
 
-public class TipoViaController : Controller
+public class TipoArticuloController : Controller
 {
     #region Constructor
 
     private readonly IRepository _repository;
 
-    public TipoViaController(IRepository repository)
+    public TipoArticuloController(IRepository repository)
     {
         _repository = repository;
     }
@@ -30,7 +30,7 @@ public class TipoViaController : Controller
     [HttpGet]
     public async Task<IActionResult> ListaAll()
     {
-        var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/tipoVia");
+        var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/tipoarticulo");
 
         if (query.Error)
             return StatusCode(StatusCodes.Status200OK, new { data = new List<TablaGlobalSelectDto>() });

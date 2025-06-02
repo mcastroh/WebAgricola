@@ -1,0 +1,32 @@
+﻿@using Logistic.Shared.DTOs
+@model List<TablaGlobalSelectDto>
+
+<li class="nav-item-dropdown">
+     
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        Categorías
+    </a>
+    <ul class="dropdown-menu">
+        @foreach (TablaGlobalSelectDto tg in Model)
+        {
+            <li>
+                <div class="col p-0 rounded border" id="@tg.Id">
+                    <a href="@tg.Codigo">@tg.Name</a>
+                </div>
+            </li>
+        }
+    </ul>
+</li>
+
+@* 
+<div class="container">
+    <div class="row bg-dark" id="menu">
+        @foreach (TablaGlobalSelectDto item in Model)
+        {
+            <div class="col p-0 rounded border" id="@item.Id">
+                <a href="@item.Codigo">@item.Name</a>
+            </div>
+        }
+    </div> 
+</div> 
+*@
