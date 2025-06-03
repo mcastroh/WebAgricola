@@ -1,0 +1,55 @@
+﻿@using Logistic.Shared.DTOs
+@model IEnumerable<TablaGlobalSelectDto>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <partial name="_ReporteEncabezado" />
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">
+            <thead class="table-dark">
+                <tr style="text-align: left">                    
+                    <th class="tbth" align="center">Código</th>
+                    <th >Descripción</th> 
+                    <th align="left">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (!item.EsActivo)
+                            {
+                                <td align="left" style="color:red">@Html.DisplayFor(m => item.Codigo)</td>
+                                <td align="left" style="color:red">@Html.DisplayFor(m => item.Name)</td>
+                                <td align="center" style="color:red">No Activo</td>
+                            }
+                            else
+                            {
+                                <td align="left">@Html.DisplayFor(m => item.Codigo)</td>
+                                <td align="left">@Html.DisplayFor(m => item.Name)</td>
+                                <td align="center"></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

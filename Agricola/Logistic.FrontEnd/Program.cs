@@ -9,6 +9,7 @@ var urlProd = "https://localhost:8084"; //"https://fantasybackend.azurewebsites.
 var urlLocal = "https://localhost:8084";
 builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(urlProd) });
 builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -31,5 +32,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+IWebHostEnvironment env = app.Environment;
+Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "Rotativa/Windows");
 
 app.Run();

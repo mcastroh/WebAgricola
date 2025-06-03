@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+    string titulo = ViewBag.Titulo;
+    string logo = ViewBag.Logo;
+    string fechaListado = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+         
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        }
+        table {
+            width: 100%;
+        }
+        p {
+            margin: 0px
+        }            
+        p.text { 
+            font-size: 15px; 
+            font-weight: 100; 
+            color: #858585;            
+        }
+    </style>
+     
+</head>
+    <body>
+    <table border="0">
+        <tr>
+            <td width="10%">
+                <img id="logo" src="@logo" style="max-width:150px; max-height:120px;" class="rounded" alt="Logo" />
+            </td> 
+            <td width="70%" align="center" valign="middle">
+               @*  <h2 style="color:#C00000;">@titulo</h2> *@
+                <h2>@titulo</h2>
+            </td>
+            <td width="20%" align="right" valign="middle">
+                <p class="text">FECHA : @fechaListado</p>
+            </td>
+        </tr>
+    </table> 
+</body> 
+</html>
