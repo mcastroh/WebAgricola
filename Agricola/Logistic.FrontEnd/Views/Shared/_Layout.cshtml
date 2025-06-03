@@ -76,9 +76,9 @@
 
                         <span style="color: blue; font-weight: bold; font-size: 20px;">&nbsp;&nbsp;Configuración </span>
 
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoAlmacen")"><font color="green">Tipos de Almacenes</font></a>
+
                         <a class="collapse-item" href="@Url.Action("Index", "TipoVia")"><font color="red">Tipos de Vías</font></a>
-                       
-                        @await Component.InvokeAsync("TipoVia")
                         
                         <a class="collapse-item" href="@Url.Action("Index", "TipoArticulo")"><font color="red">Tipos de Articulos</font></a>
 
@@ -96,8 +96,7 @@
                         <a class="collapse-item" href="@Url.Action("Index", "Paises")"><font color="blue">Países</font></a>
 
                         <a class="collapse-item" href="@Url.Action("Index", "Roles")"><font color="green">Roles</font></a>
-                        <a class="collapse-item" href="@Url.Action("Index", "TipoAlmacen")"><font color="green">Tipos de Almacenes</font></a>
-
+                       
                         <a class="collapse-item" href="@Url.Action("Index", "Empresa")">Empresa</a>
                         <a class="collapse-item" href="@Url.Action("Index", "Usuario")">Usuarios</a>
                         <a class="collapse-item" href="@Url.Action("Index", "Moneda")">Monedas</a>
@@ -342,7 +341,6 @@
                 </div>
 
             </li>
-
 
 
             <!-- Divider -->

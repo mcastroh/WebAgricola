@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Logistic.Shared.Responses;
+using System.Text;
 using System.Text.Json;
 
 namespace Logistic.FrontEnd.Repositories;
@@ -47,6 +48,14 @@ public class Repository : IRepository
         var messageJSON = JsonSerializer.Serialize(model);
         var messageContet = new StringContent(messageJSON, Encoding.UTF8, "application/json");
         var responseHttp = await _httpClient.PostAsync(url, messageContet);
+
+        if (responseHttp.IsSuccessStatusCode)
+        {
+            var response = await UnserializeAnswer<T>(responseHttp);
+            return new HttpResponseWrapper<object>(response, !responseHttp.IsSuccessStatusCode, responseHttp);
+            //return new HttpResponseWrapper<T>(response, false, responseHttp);
+        }
+
         return new HttpResponseWrapper<object>(null, !responseHttp.IsSuccessStatusCode, responseHttp);
     }
 
@@ -69,6 +78,13 @@ public class Repository : IRepository
         var messageJson = JsonSerializer.Serialize(model);
         var messageContent = new StringContent(messageJson, Encoding.UTF8, "application/json");
         var responseHttp = await _httpClient.PutAsync(url, messageContent);
+
+        if (responseHttp.IsSuccessStatusCode)
+        {
+            var response = await UnserializeAnswer<T>(responseHttp);
+            return new HttpResponseWrapper<object>(response, !responseHttp.IsSuccessStatusCode, responseHttp);
+        }
+
         return new HttpResponseWrapper<object>(null, !responseHttp.IsSuccessStatusCode, responseHttp);
     }
 

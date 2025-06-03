@@ -15,7 +15,8 @@ namespace Logistic.FrontEnd.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/tipoVia");
+            var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>("/api/TipoAlmacen");
+            //return await Task.FromResult((IViewComponentResult)View(query.Response));
             return View(query.Response);
         }
     }

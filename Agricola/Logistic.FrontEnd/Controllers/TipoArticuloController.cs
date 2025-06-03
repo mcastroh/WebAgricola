@@ -45,7 +45,7 @@ public class TipoArticuloController : Controller
     //    var (urlBase, token) = await _autenticarService.Autenticar();
     //    var httpClient = GenericRequest.RequestApi(urlBase, token.token);
 
-    //    using (var response = await httpClient.GetAsync("/api/tipoVia"))
+    //    using (var response = await httpClient.GetAsync("/api/TipoAlmacen"))
     //    {
     //        if (response.IsSuccessStatusCode)
     //        {
@@ -67,7 +67,7 @@ public class TipoArticuloController : Controller
     //    var http = new HttpClient();
     //    http.BaseAddress = new Uri("https://localhost:8084");
 
-    //    using (var response = await http.GetAsync("/api/tipoVia"))
+    //    using (var response = await http.GetAsync("/api/TipoAlmacen"))
     //    {
     //        if (response.IsSuccessStatusCode)
     //        {

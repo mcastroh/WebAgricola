@@ -7,7 +7,7 @@
 
 let tituloEntity = 'Tipo de Vía';
 let tablaData;
-let filaSeleccionada; 
+let filaSeleccionada;
 
 $(cargaInicial);
 
@@ -85,7 +85,7 @@ $("#btn-guardar").on("click", function () {
 
     $("#modalData").find("div.modal-content").LoadingOverlay("show");
 
-    if (modelo.id == 0) { 
+    if (modelo.id == 0) {
         fetch("/TipoVia/Crear", {
             method: "POST",
             body: formData
@@ -149,7 +149,7 @@ function LimpiarControles() {
     document.getElementById("NameMensaje").innerHTML = '';
 }
 
-function mostarModal(modelo = MODELO_BASE) { 
+function mostarModal(modelo = MODELO_BASE) {
     $("#txtPrimaryKey").val(modelo.id);
     $("#txtCodigo").val(modelo.codigo);
     $("#txtName").val(modelo.name);
@@ -160,11 +160,19 @@ function mostarModal(modelo = MODELO_BASE) {
 function cargaInicial() {
     tablaData = $('#tbdata').DataTable({
         responsive: true,
+
         "ajax": {
-            "url": '/TipoVia/ListaAll',
+            "url": `/Generic/ListaAll`,
             "type": "GET",
+            data: { 'nameApi': '/api/tipovia' },
             "datatype": "json"
         },
+
+        //"ajax": {
+        //    "url": '/TipoVia/ListaAll',
+        //    "type": "GET",
+        //    "datatype": "json"
+        //},
         "columns": [
             { "data": "id", "visible": false, "searchable": false },
             { "data": "codigo" },

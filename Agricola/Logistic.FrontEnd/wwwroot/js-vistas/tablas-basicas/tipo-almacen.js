@@ -5,7 +5,8 @@
     esActivo: 1
 };
 
-let tituloEntity = 'Tipo de Artículo';
+const url = '/api/tipoalmacen';
+let tituloEntity = 'Tipo de Almacén';
 let tablaData;
 let filaSeleccionada;
 
@@ -49,7 +50,7 @@ $('#tbdata tbody').on("click", ".btn-eliminar", function () {
         function (respuesta) {
             if (respuesta) {
                 $(".showSweetAlert").LoadingOverlay("show");
-                fetch(`/TipoArticulo/Eliminar?id=${data.id}`, {
+                fetch(`/Generic/Eliminar?url=${url}/${data.id}`, {
                     method: "DELETE"
                 })
                     .then(response => {
@@ -73,20 +74,40 @@ $("#btn-guardar").on("click", function () {
     let flgValidar = ValidarEntidad();
     if (flgValidar == "ERROR") { return; }
 
-    let modelo = structuredClone(MODELO_BASE);
+    //let modelo = structuredClone(MODELO_BASE);
 
-    modelo["id"] = parseInt($("#txtPrimaryKey").val());
-    modelo["codigo"] = $("#txtCodigo").val();
-    modelo["name"] = $("#txtName").val();
-    modelo["esActivo"] = $("#cboEstado").val() == 1 ? true : false;
+    //modelo["id"] = parseInt($("#txtPrimaryKey").val());
+    //modelo["codigo"] = $("#txtCodigo").val();
+    //modelo["name"] = $("#txtName").val();
+    //modelo["esActivo"] = $("#cboEstado").val() == 1 ? true : false;
+
+    const model = {
+        id: parseInt($("#txtPrimaryKey").val()),
+        codigo: $("#txtCodigo").val(),
+        name: $("#txtName").val(),
+        esActivo: $("#cboEstado").val() == 1 ? true : false,
+        "auditInsertUsuario": 'cocorocos',
+        "auditUpdateUsuario": 'cocorocos',
+        "auditInsertFecha": '2025-06-02',
+        "auditUpdateFecha": '2025-06-02',
+    };
+
+    //if (model.id == 0) {
+    //    model["auditInsertUsuario"] = 'cocorocos';
+    //    model["auditInsertFecha"] = '2025-06-02';
+    //} else {
+    //    model["auditUpdateUsuario"] = 'cocorocos';
+    //    model["auditUpdateFecha"] = '2025-06-02';
+    //}
 
     let formData = new FormData();
-    formData.append("modelo", JSON.stringify(modelo));
+    formData.append("url", JSON.stringify("/api/TipoAlmacen"));
+    formData.append("model", JSON.stringify(model));
 
     $("#modalData").find("div.modal-content").LoadingOverlay("show");
 
-    if (modelo.id == 0) {
-        fetch("/TipoArticulo/Crear", {
+    if (model.id == 0) {
+        fetch("/Generic/Crear", {
             method: "POST",
             body: formData
         })
@@ -95,7 +116,7 @@ $("#btn-guardar").on("click", function () {
                 return response.ok ? response.json() : Promise.reject(response);
             })
             .then(responseJson => {
-                if (responseJson.estado) {
+                if (responseJson.estado == false) {
                     tablaData.row.add(responseJson.objeto).draw(false);
                     $("#modalData").modal("hide");
                     swal("Listo", `${tituloEntity} fue creado`, "success");
@@ -105,7 +126,7 @@ $("#btn-guardar").on("click", function () {
             })
     }
     else {
-        fetch("/TipoArticulo/Editar", {
+        fetch("/Generic/Editar", {
             method: "PUT",
             body: formData
         })
@@ -114,7 +135,7 @@ $("#btn-guardar").on("click", function () {
                 return response.ok ? response.json() : Promise.reject(response);
             })
             .then(responseJson => {
-                if (responseJson.estado) {
+                if (responseJson.estado == false) {
                     tablaData.row(filaSeleccionada).data(responseJson.objeto).draw(false);
                     filaSeleccionada = null;
                     $("#modalData").modal("hide");
@@ -160,19 +181,12 @@ function mostarModal(modelo = MODELO_BASE) {
 function cargaInicial() {
     tablaData = $('#tbdata').DataTable({
         responsive: true,
-
         "ajax": {
             "url": `/Generic/ListaAll`,
             "type": "GET",
-            data: { 'nameApi': '/api/tipoarticulo' },
+            data: { 'url': url },
             "datatype": "json"
         },
-
-        //"ajax": {
-        //    "url": '/TipoArticulo/ListaAll',
-        //    "type": "GET",
-        //    "datatype": "json"
-        //},
         "columns": [
             { "data": "id", "visible": false, "searchable": false },
             { "data": "codigo" },

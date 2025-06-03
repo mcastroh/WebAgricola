@@ -9,7 +9,7 @@ $(document).ready(function () {
     tablaData = $('#tbdata').DataTable({
         responsive: true,
         "ajax": {
-            "url": '/TipoVia/ListaAll',
+            "url": '/TipoAlmacen/ListaAll',
             "type": "GET",
             "datatype": "json"
         },
@@ -89,7 +89,7 @@ $("#btnGuardar").click(function () {
     $("#modalData").find("div.modal-content").LoadingOverlay("show");
 
     if (modelo.idTipoVia == 0) {
-        fetch("/TipoVia/Crear", {
+        fetch("/TipoAlmacen/Crear", {
             method: "POST",
             body: formData
         })
@@ -108,7 +108,7 @@ $("#btnGuardar").click(function () {
             })
     }
     else {
-        fetch("/TipoVia/Editar", {
+        fetch("/TipoAlmacen/Editar", {
             method: "PUT",
             body: formData
         })
@@ -171,7 +171,7 @@ $('#tbdata tbody').on("click", ".btn-eliminar", function () {
 
                 $(".showSweetAlert").LoadingOverlay("show");
 
-                fetch(`/TipoVia/Eliminar?idTipoVia=${data.idTipoVia}`, {
+                fetch(`/TipoAlmacen/Eliminar?idTipoVia=${data.idTipoVia}`, {
                     method: "DELETE"
                 })
                     .then(response => {

@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text;
+﻿using Logistic.FrontEnd.Models;
+using Logistic.FrontEnd.Repositories;
+using Logistic.Shared.DTOs;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace Logistic.FrontEnd.Controllers;
 
-public abstract class GenericController<Model, Entity> : Controller where Entity : class where Model : Models.Model, new()
+public class GenericController : Controller
 {
     #region Constructor
 
-    //private readonly IAutenticarService _autenticarService;
-    private readonly IMapper _mapper;
+    private readonly IRepository _repository;
 
-    protected GenericController(
-        //IAutenticarService autenticarService, 
-        IMapper mapper)
+    public GenericController(IRepository repository)
     {
-        //_autenticarService = autenticarService;
-        _mapper = mapper;
+        _repository = repository;
     }
 
     #endregion Constructor
@@ -32,39 +32,20 @@ public abstract class GenericController<Model, Entity> : Controller where Entity
     #region HttpPost => Crear
 
     [HttpPost]
-    public async Task<IActionResult> Save(Model model)
+    public async Task<IActionResult> Crear([FromForm] string url, [FromForm] string model)
     {
-        var gResponse = new GenericResponse<Entity>() { Estado = false };
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        var gResponse = new GenericResponse<object>() { Estado = false };
 
         try
         {
-            //var genericModel = new Model();
-            var newModel = _mapper.Map<Model>(model);
-            var (urlBase, token) = await _autenticarService.Autenticar();
-            var httpClient = GenericRequest.RequestApi(urlBase, token.token);
-
-            var (valIsExists, valMesage) = await ServicioGlobalTablas.ValidateCodigoSiExiste(httpClient, $"{model.NameApi}{0}/{newModel.Codigo}", $"Código '{newModel.Codigo}' ya fue registrado.");
-
-            if (valIsExists)
-            {
-                gResponse.Mensaje = valMesage;
-                return StatusCode(StatusCodes.Status200OK, gResponse);
-            }
-
-            var content = new StringContent(JsonConvert.SerializeObject(newModel), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(model.NameApi, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                gResponse.Estado = true;
-                gResponse.Objeto = JsonConvert.DeserializeObject<Entity>(await response.Content.ReadAsStringAsync());
-            }
+            var urlApi = JsonConvert.DeserializeObject<string>(url);
+            var modelo = JsonConvert.DeserializeObject<TablaGlobalSelectDto>(model);
+            var query = await _repository.PostAsync(urlApi, modelo);
+            gResponse.Objeto = query.Response;
         }
         catch (Exception ex)
         {
+            gResponse.Estado = true;
             gResponse.Mensaje = ex.Message;
         }
 
@@ -73,29 +54,66 @@ public abstract class GenericController<Model, Entity> : Controller where Entity
 
     #endregion HttpPost => Crear
 
-    #region HttpGet => All      string nameApi
+    #region HttpPost => Editar
 
-    [HttpGet]
-    public async Task<IActionResult> ListaAll()
+    [HttpPut]
+    public async Task<IActionResult> Editar([FromForm] string url, [FromForm] string model)
     {
-        //var api = new Model();
+        var gResponse = new GenericResponse<object>() { Estado = false };
 
-        var datos = new List<Entity>();
-        var (urlBase, token) = await _autenticarService.Autenticar();
-        var httpClient = GenericRequest.RequestApi(urlBase, token.token);
-
-        using (var response = await httpClient.GetAsync("/api/tipoAlmacen/getAll"))
+        try
         {
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                datos = JsonConvert.DeserializeObject<List<Entity>>(content);
-                if (datos == null) datos = new List<Entity>();
-            }
+            var urlApi = JsonConvert.DeserializeObject<string>(url);
+            var modelo = JsonConvert.DeserializeObject<TablaGlobalSelectDto>(model);
+            var query = await _repository.PutAsync(urlApi, modelo);
+            gResponse.Objeto = query.Response;
+        }
+        catch (Exception ex)
+        {
+            gResponse.Estado = true;
+            gResponse.Mensaje = ex.Message;
         }
 
-        return StatusCode(StatusCodes.Status200OK, new { data = datos });
+        return StatusCode(StatusCodes.Status200OK, gResponse);
     }
 
+    #endregion HttpPost => Editar
 
-        #endregion HttpGet => All      string nameApi
+    #region HttpDelete => Eliminar
+
+    [HttpDelete]
+    public async Task<IActionResult> Eliminar(string url)
+    {
+        var gResponse = new GenericResponse<string>();
+
+        try
+        {
+            var query = await _repository.DeleteAsync(url);
+            gResponse.Estado = query.HttpResponseMessage.StatusCode == HttpStatusCode.NoContent;
+        }
+        catch (Exception ex)
+        {
+            gResponse.Estado = false;
+            gResponse.Mensaje = ex.Message;
+        }
+
+        return StatusCode(StatusCodes.Status200OK, gResponse);
+    }
+
+    #endregion HttpDelete => Eliminar
+
+    #region HttpGet => All
+
+    [HttpGet]
+    public async Task<IActionResult> ListaAll(string url)
+    {
+        var query = await _repository.GetAsync<List<TablaGlobalSelectDto>>(url);
+
+        if (query.Error)
+            return StatusCode(StatusCodes.Status200OK, new { data = new List<TablaGlobalSelectDto>() });
+
+        return StatusCode(StatusCodes.Status200OK, new { data = query.Response });
+    }
+
+    #endregion HttpGet => All
+}
